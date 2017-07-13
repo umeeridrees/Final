@@ -1,0 +1,77 @@
+﻿@model Final.Models.Question
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Question</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.q_id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.statement, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.statement)
+                @Html.ValidationMessageFor(model => model.statement)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.op1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.op1)
+                @Html.ValidationMessageFor(model => model.op1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.op2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.op2)
+                @Html.ValidationMessageFor(model => model.op2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.op3, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.op3)
+                @Html.ValidationMessageFor(model => model.op3)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.op4, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.op4)
+                @Html.ValidationMessageFor(model => model.op4)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.answer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.answer)
+                @Html.ValidationMessageFor(model => model.answer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ManageQuestions", new { id = Model.test_id})
+</div>

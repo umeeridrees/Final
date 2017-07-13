@@ -1,0 +1,59 @@
+﻿@model Final.Models.Student
+@{
+    ViewBag.Title = "ViewStudents";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<div class="container body-content" id="Result">
+    
+
+</div>
+<h4>Add New</h4>
+@using (Ajax.BeginForm("ViewStudents", "TeacherAccount", null, new AjaxOptions{
+    HttpMethod = "POST",
+    UpdateTargetId = "Result"
+}
+))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rollno, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.rollno)
+                @Html.ValidationMessageFor(model => model.rollno)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.password)
+                @Html.ValidationMessageFor(model => model.password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "@Url.Action("ViewStudents","TeacherAccount")",
+                success: function (data, textStatus, XMLHttpRequest) {
+                    SetData(data);}
+            });
+            function SetData(data) {
+                $("#Result").html(data);
+            }
+        });
+    </script>
+}

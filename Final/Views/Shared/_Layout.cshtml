@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    @{
+        var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
+    }
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @{
+                    if (controller == "TeacherAccount")
+                    {
+                        @Html.ActionLink("MCQ's", "Index", "TeacherAccount", null, new { @class = "navbar-brand" });
+                    }
+                    else if (controller == "StudentAccount")
+                    {
+                        @Html.ActionLink("MCQ's", "Index", "StudentAccount", null, new { @class = "navbar-brand" });
+                    }
+                    else if (controller == "Admin" || controller == "Teacher" || controller == "Student" || controller == "Question" || controller == "Test" || controller == "Take")
+                    {
+                        @Html.ActionLink("AdminPanel", "Index", "Admin", null, new { @class = "navbar-brand" })
+                    }
+                    else
+                    {
+                        Html.ActionLink("Application name", "Index", "Admin", null, new { @class = "navbar-brand" });
+                    }
+                }
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @{
+                        if (controller == "TeacherAccount")
+                        {
+                            <li>@Html.ActionLink("Your Tests", "CreateTest", "TeacherAccount")</li>
+                            <li>@Html.ActionLink("View Students", "AddStudent", "TeacherAccount")</li>
+                            <li>@Html.ActionLink("Results", "ViewResult", "TeacherAccount")</li>
+                        }
+                        else if (controller == "StudentAccount")
+                        {
+                            <li>@Html.ActionLink("Check Results", "Results", "StudentAccount")</li>
+                        }
+                        else if (controller == "Admin" || controller == "Teacher" || controller == "Student" || controller == "Question" || controller == "Test" || controller == "Take")
+                        {
+                            <li>@Html.ActionLink("Teachers", "Index", "Teacher")</li>
+                            <li>@Html.ActionLink("Students", "Index", "Student")</li>
+                            <li>@Html.ActionLink("Tests", "Index", "Test")</li>
+                            <li>@Html.ActionLink("Questions", "Index", "Question")</li>
+                            <li>@Html.ActionLink("Results", "Index", "Take")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        }
+                    }
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - MCQ's System</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

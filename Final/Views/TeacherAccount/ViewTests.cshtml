@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Final.Models.Test>
+@{
+    ViewBag.Title = "ViewTests";
+}
+<h3>Your Tests</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalquestions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duaration)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalquestions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.duaration)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditTest",new { id = item.test_id }) |
+                @Html.ActionLink("Details", "TestDetails", new { id = item.test_id }) |
+                @Html.ActionLink("Delete", "TestDelete", new { id = item.test_id }) |
+                @Html.ActionLink("Manage Questions", "ManageQuestions", new { id = item.test_id })
+                
+            </td>
+        </tr>
+    }
+
+</table>

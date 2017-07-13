@@ -1,0 +1,31 @@
+﻿@model Final.Models.StudentTestResultViewModel
+@{
+    ViewBag.Title = "Results";
+}
+
+<h2>Results</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tests[1].name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Takes[1].marks)
+        </th>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < Model.Takes.Count(); i++)
+    {
+        <tr>
+            <td>
+                @Model.tests[i].name
+            </td>
+            <td>
+                @Model.Takes[i].marks
+            </td>
+        </tr>
+    }
+
+</table>

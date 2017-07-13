@@ -1,0 +1,115 @@
+﻿@model Final.Models.Test
+@{
+    ViewBag.Title = "CreateTest";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<div class="container body-content" id="Result">
+
+
+</div>
+<h4>Add New</h4>
+@using (Ajax.BeginForm("ViewTests", "TeacherAccount", null, new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "Result"
+}
+))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name)
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.totalquestions, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.totalquestions)
+                @Html.ValidationMessageFor(model => model.totalquestions)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.duaration, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.duaration)
+                @Html.ValidationMessageFor(model => model.duaration)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "@Url.Action("ViewTests","TeacherAccount")",
+                success: function (data, textStatus, XMLHttpRequest) {SetData(data);}
+            });
+            function SetData(data) {
+                $("#Result").html(data);
+            }
+        });
+    </script>
+}
+
+
+@*@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name)
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.totalquestions, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.totalquestions)
+                @Html.ValidationMessageFor(model => model.totalquestions)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.duaration, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.duaration)
+                @Html.ValidationMessageFor(model => model.duaration)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}*@
+

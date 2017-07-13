@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Final.Models.Student>
+@{
+    ViewBag.Title = "ViewStudents";
+}
+
+<h3>Your Students</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.rollno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.rollno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditStudent", new { id = item.s_id }) |
+                @Html.ActionLink("Details", "StudentDetails", new { id = item.s_id }) |
+                @Html.ActionLink("Delete", "DeleteStudent", new { id = item.s_id })
+            </td>
+        </tr>
+    }
+
+</table>
+

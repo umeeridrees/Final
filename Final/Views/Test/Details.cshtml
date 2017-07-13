@@ -1,0 +1,42 @@
+﻿@model Final.Models.Test
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Test</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalquestions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalquestions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duaration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duaration)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.test_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

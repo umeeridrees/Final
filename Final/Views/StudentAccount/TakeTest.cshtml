@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Final.Models.Question>
+@{
+    ViewBag.Title = "TakeTest";
+}
+
+<h2>@ViewBag.name</h2><div id="dvCountDown" style="float:right"><h4><span id="lblCount"></span></h4></div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "myform" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value=@Model.First().test_id />
+    int i = 1;
+    foreach (var question in Model)
+    {
+    <table>
+        <tr><td>Question @i:</td><td>@question.statement</td></tr>
+        <tr><td></td><td> </td></tr>
+        <tr><td>@Html.RadioButton(@question.statement, 1)</td><td>@question.op1</td></tr>
+        <tr><td>@Html.RadioButton(@question.statement, 2)</td><td>@question.op2</td></tr>
+        <tr><td>@Html.RadioButton(@question.statement, 3)</td><td>@question.op3</td></tr>
+        <tr><td>@Html.RadioButton(@question.statement, 4)</td><td>@question.op4</td></tr>
+    </table>
+    }
+    <input type="submit" value="Done" id="bbb"/>
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(function () {
+        $(document).ready(function () {
+            var seconds = @(Convert.ToInt32(ViewBag.time))
+            $("#dvCountDown").show();
+            $("#lblCount").html(seconds);
+            setInterval(function () {
+                seconds--;
+                $("#lblCount").html(seconds);
+                if (seconds == 0) {
+                    $("#dvCountDown").hide();
+                    $("#myform").trigger('submit');
+                }
+            }, 1000);
+        });
+    });
+</script>

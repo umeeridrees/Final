@@ -1,0 +1,55 @@
+﻿@model Final.Models.Test
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create new Test</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name)
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.totalquestions, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.totalquestions)
+                @Html.ValidationMessageFor(model => model.totalquestions)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.duaration, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.duaration)
+                @Html.ValidationMessageFor(model => model.duaration)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.t_id, "Teacher Name", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("t_id", String.Empty)
+                @Html.ValidationMessageFor(model => model.t_id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,9 @@
+﻿@model Final.Models.StudentTestViewModel
+@{
+    ViewBag.Title = "index";
+}
+
+<h2>Hello @User.Identity.Name</h2>
+<p>You have @Model.students.Count() students</p>
+<p>You have @Model.tests.Count() tests</p>
+

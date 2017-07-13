@@ -1,0 +1,36 @@
+﻿@model Final.Models.StudentTestResultViewModel
+@{
+    ViewBag.Title = "ViewResult";
+}
+
+<h2>Results</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.test.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.student.rollno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.take.marks)
+        </th>
+        <th></th>
+    </tr>
+    @for (int i = 0; i < Model.Takes.Count(); i++)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.tests[i].name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.students[i].rollno)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Takes[i].marks)
+            </td>
+        </tr>
+    }
+        
+
+</table>
